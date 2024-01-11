@@ -28,16 +28,16 @@ public class AccountService {
     public String login(Account account) {
         String username = account.getUsername();
         String password = account.getPassword();
-        String userId = accountRepository.getIdByUsernameAndPassword(username, password);
-        System.out.println("user Id is: " + userId);
-        if (userId == null){
+        String userUuid = accountRepository.getUuidByUsernameAndPassword(username, password);
+        System.out.println("user Id is: " + userUuid);
+        if (userUuid == null){
             throw new IllegalStateException("Username and password combination does not exist");
         } else {
             //check if user already has a token
             //check if token is expired
             //if expired, generate new token
             //if not expired, return token
-            return userId;
+            return userUuid;
         }
     }
 
