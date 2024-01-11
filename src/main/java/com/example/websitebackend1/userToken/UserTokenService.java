@@ -12,4 +12,8 @@ public class UserTokenService {
     public UserTokenService(UserTokenRepository userTokenRepository){
         this.userTokenRepository = userTokenRepository;
     }
+
+    public void addNewUserToken(UserToken userToken){
+        userTokenRepository.save(userToken);
+    }
 }

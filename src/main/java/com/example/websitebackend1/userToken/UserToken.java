@@ -23,6 +23,8 @@ public class UserToken {
     public UserToken(){
     }
 
+
+
     public UserToken(long id,
                      String creationDate,
                      String lastUseDate,
@@ -35,6 +37,10 @@ public class UserToken {
 
     public UserToken(String creationDate, String userId) {
         this.creationDate = creationDate;
+        this.userId = userId;
+    }
+
+    public UserToken(String userId) {
         this.userId = userId;
     }
 
