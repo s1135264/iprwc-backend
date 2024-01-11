@@ -1,6 +1,5 @@
 package com.example.websitebackend1.product;
 
-import org.hibernate.tool.schema.spi.CommandAcceptanceException;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import java.util.List;
 
 @Configuration
-public class productConfig {
+public class ProductConfig {
 
     @Bean
     CommandLineRunner commandLineRunnerProduct(ProductRepository repository){
