@@ -2,6 +2,8 @@ package com.example.websitebackend1.session;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.UUID;
 
 @Entity
@@ -18,16 +20,12 @@ public class Session {
             generator = "session_sequence"
     )
     private long id;
-    private String creationDate;
-    private String LastUseDate;
+    private LocalDate creationDate = LocalDate.now();
+    private LocalDate LastUseDate = LocalDate.now();
     private UUID userUuid;
-    private UUID token;
+    private UUID token = UUID.randomUUID();
 
-    public Session(){
-    }
-
-
-    public Session(long id, String creationDate, String lastUseDate, UUID userUuid, UUID token) {
+    public Session(long id, LocalDate creationDate, LocalDate lastUseDate, UUID userUuid, UUID token) {
         this.id = id;
         this.creationDate = creationDate;
         LastUseDate = lastUseDate;
@@ -35,19 +33,11 @@ public class Session {
         this.token = token;
     }
 
-    public Session(String creationDate, UUID userUuid) {
-        this.creationDate = creationDate;
-        this.userUuid = userUuid;
-    }
-
     public Session(UUID userUuid) {
         this.userUuid = userUuid;
     }
 
-    public Session(String creationDate, String lastUseDate, UUID userUuid) {
-        this.creationDate = creationDate;
-        LastUseDate = lastUseDate;
-        this.userUuid = userUuid;
+    public Session() {
     }
 
     public long getId() {
@@ -58,19 +48,19 @@ public class Session {
         this.id = id;
     }
 
-    public String getCreationDate() {
+    public LocalDate getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(String creationDate) {
+    public void setCreationDate(LocalDate creationDate) {
         this.creationDate = creationDate;
     }
 
-    public String getLastUseDate() {
+    public LocalDate getLastUseDate() {
         return LastUseDate;
     }
 
-    public void setLastUseDate(String lastUseDate) {
+    public void setLastUseDate(LocalDate lastUseDate) {
         LastUseDate = lastUseDate;
     }
 

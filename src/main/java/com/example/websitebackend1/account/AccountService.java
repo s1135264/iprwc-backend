@@ -34,6 +34,7 @@ public class AccountService {
             //check if user already has a token
             //check if token is expired
             //if expired, generate new token
+                //And delete old token
             //if not expired, return token
             return userUuid;
         }
