@@ -18,10 +18,10 @@ public class AccountController {
         this.accountService = accountService;
     }
 
-//    @GetMapping(path = "/login/{username}/{password}")
-//    public String Login(@PathVariable("username") String username, @PathVariable("password") String password){
-//        return accountService.login(username, password);
-//    }
+    @PostMapping(path = "/login")
+    public String Login(@RequestBody Account account){
+        return accountService.login(account);
+    }
 
     @PostMapping(path = "/create")
     public void registerNewAccount(@RequestBody Account account) {

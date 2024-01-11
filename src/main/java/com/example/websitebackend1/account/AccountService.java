@@ -25,26 +25,21 @@ public class AccountService {
         accountRepository.save(account);
     }
 
-//    public String login(String username, String password) {
-//        String userId = accountRepository.getIdByUsernameAndPassword(username, password);
-//        System.out.println("user Id is: " + userId);
-//        if (userId == null){
-//            return null;
-//        } else {
-////            return userId;
-//            return getToken(userId);
-//        }
-//    }
+    public String login(Account account) {
+        String username = account.getUsername();
+        String password = account.getPassword();
+        String userId = accountRepository.getIdByUsernameAndPassword(username, password);
+        System.out.println("user Id is: " + userId);
+        if (userId == null){
+            throw new IllegalStateException("Username and password combination does not exist");
+        } else {
+            //check if user already has a token
+            //check if token is expired
+            //if expired, generate new token
+            //if not expired, return token
+            return userId;
+        }
+    }
 
-//    private String getToken(String userId) {
-//
-//        //if token exists. Give that one. Else generate a new one
-//        if (userTokenService.getToken(userId) != null){
-//            return userTokenService.getToken(userId);
-//        } else {
-//            String token = generateToken();
-//            userTokenService.addNewUserToken(new UserToken(userId, token));
-//            return token;
-//        }
-//    }
+
 }
