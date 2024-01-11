@@ -1,53 +1,53 @@
-package com.example.websitebackend1.userToken;
+package com.example.websitebackend1.session;
 
 import jakarta.persistence.*;
 
+import java.util.UUID;
+
 @Entity
 @Table
-public class UserToken {
+public class Session {
     @Id
     @SequenceGenerator(
-            name = "userToken_sequence",
-            sequenceName = "userToken_sequence",
+            name = "session_sequence",
+            sequenceName = "session_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "userToken_sequence"
+            generator = "session_sequence"
     )
     private long id;
     private String creationDate;
     private String LastUseDate;
-    private String userId;
+    private UUID userUuid;
+    private UUID token;
 
-    public UserToken(){
+    public Session(){
     }
 
 
-
-    public UserToken(long id,
-                     String creationDate,
-                     String lastUseDate,
-                     String userId) {
+    public Session(long id, String creationDate, String lastUseDate, UUID userUuid, UUID token) {
         this.id = id;
         this.creationDate = creationDate;
         LastUseDate = lastUseDate;
-        this.userId = userId;
+        this.userUuid = userUuid;
+        this.token = token;
     }
 
-    public UserToken(String creationDate, String userId) {
+    public Session(String creationDate, UUID userUuid) {
         this.creationDate = creationDate;
-        this.userId = userId;
+        this.userUuid = userUuid;
     }
 
-    public UserToken(String userId) {
-        this.userId = userId;
+    public Session(UUID userUuid) {
+        this.userUuid = userUuid;
     }
 
-    public UserToken(String creationDate, String lastUseDate, String userId) {
+    public Session(String creationDate, String lastUseDate, UUID userUuid) {
         this.creationDate = creationDate;
         LastUseDate = lastUseDate;
-        this.userId = userId;
+        this.userUuid = userUuid;
     }
 
     public long getId() {
@@ -74,21 +74,30 @@ public class UserToken {
         LastUseDate = lastUseDate;
     }
 
-    public String getUserId() {
-        return userId;
+    public UUID getUserUuid() {
+        return userUuid;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUserUuid(UUID userUuid) {
+        this.userUuid = userUuid;
+    }
+
+    public UUID getToken() {
+        return token;
+    }
+
+    public void setToken(UUID token) {
+        this.token = token;
     }
 
     @Override
     public String toString() {
-        return "UserToken{" +
+        return "Session{" +
                 "id=" + id +
                 ", creationDate='" + creationDate + '\'' +
                 ", LastUseDate='" + LastUseDate + '\'' +
-                ", userId='" + userId + '\'' +
+                ", userUuid=" + userUuid +
+                ", token=" + token +
                 '}';
     }
 }

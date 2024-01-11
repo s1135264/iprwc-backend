@@ -1,8 +1,8 @@
-package com.example.websitebackend1.userToken;
+package com.example.websitebackend1.session;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserTokenRepository extends JpaRepository<UserToken, Long> {
+public interface SessionRepository extends JpaRepository<Session, Long> {
 }

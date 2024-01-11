@@ -1,7 +1,5 @@
 package com.example.websitebackend1.account;
 
-import com.example.websitebackend1.userToken.UserToken;
-import com.example.websitebackend1.userToken.UserTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
