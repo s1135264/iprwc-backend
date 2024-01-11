@@ -53,4 +53,13 @@ public class SessionService {
             return session.getToken();
         }
     }
+
+    public void deleteSession(UUID sessionUuid) {
+        Session currentSession = sessionRepository.findSessionByToken(sessionUuid);
+        if (currentSession == null){
+            throw new IllegalStateException("Session with token " + sessionUuid + " does not exist");
+        } else {
+            sessionRepository.delete(currentSession);
+        }
+    }
 }
