@@ -11,7 +11,7 @@ import java.util.List;
 public class productConfig {
 
     @Bean
-    CommandLineRunner commandLineRunner(ProductRepository repository){
+    CommandLineRunner commandLineRunnerProduct(ProductRepository repository){
         return args -> {
 
             Product iphone3000 = new Product(

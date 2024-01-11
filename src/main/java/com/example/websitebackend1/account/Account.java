@@ -1,102 +1,102 @@
-package com.example.websitebackend1.user;
+package com.example.websitebackend1.account;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
-
 @Entity
 @Table
-public class User {
+public class Account {
     @Id
     @SequenceGenerator(
-            name = "user_sequence",
-            sequenceName = "user_sequence",
+            name = "account_sequence",
+            sequenceName = "account_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "user_sequence"
+            generator = "account_sequence"
     )
     private long id;
-    private boolean seller;
+    private String seller;
     private String firstName;
     private String lastName;
     private String email;
     private String phoneNumber;
-    private Date dateOfBirth;
+    private String StringOfBirth;
     private String username;
     private String password;
 
-    public User(){
+    public Account(){
     }
 
 
     //Everything constructor
-    public User(long id,
-                boolean seller,
-                String firstName,
-                String lastName,
-                String email,
-                String phoneNumber,
-                Date dateOfBirth,
-                String username,
-                String password) {
+    public Account(long id,
+                   String seller,
+                   String firstName,
+                   String lastName,
+                   String email,
+                   String phoneNumber,
+                   String StringOfBirth,
+                   String username,
+                   String password) {
         this.id = id;
         this.seller = seller;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.dateOfBirth = dateOfBirth;
+        this.StringOfBirth = StringOfBirth;
         this.username = username;
         this.password = password;
     }
 
     //minimal buyer constructor
-    public User(String username,
-                String password) {
+    public Account(String username,
+                   String password) {
         this.username = username;
         this.password = password;
     }
 
     //default user constructor
-    public User(String firstName,
-                String lastName,
-                String email,
-                String phoneNumber,
-                Date dateOfBirth,
-                String username,
-                String password) {
+    public Account(String firstName,
+                   String lastName,
+                   String email,
+                   String phoneNumber,
+                   String StringOfBirth,
+                   String username,
+                   String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.dateOfBirth = dateOfBirth;
+        this.StringOfBirth = StringOfBirth;
         this.username = username;
         this.password = password;
     }
 
     //Default seller constructor
-    public User(boolean seller,
-                String firstName,
-                String lastName,
-                String email,
-                String phoneNumber,
-                Date dateOfBirth,
-                String username,
-                String password) {
+    public Account(String seller,
+                   String firstName,
+                   String lastName,
+                   String email,
+                   String phoneNumber,
+                   String StringOfBirth,
+                   String username,
+                   String password) {
         this.seller = seller;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.dateOfBirth = dateOfBirth;
+        this.StringOfBirth = StringOfBirth;
         this.username = username;
         this.password = password;
     }
 
     //minimal seller constructor
-    public User(boolean seller, String username, String password) {
+    public Account(String seller,
+                   String username,
+                   String password) {
         this.seller = seller;
         this.username = username;
         this.password = password;
@@ -113,11 +113,11 @@ public class User {
         this.id = id;
     }
 
-    public boolean isSeller() {
+    public String isSeller() {
         return seller;
     }
 
-    public void setSeller(boolean seller) {
+    public void setSeller(String seller) {
         this.seller = seller;
     }
 
@@ -153,12 +153,12 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public Date getDateOfBirth() {
-        return dateOfBirth;
+    public String getStringOfBirth() {
+        return StringOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    public void setStringOfBirth(String StringOfBirth) {
+        this.StringOfBirth = StringOfBirth;
     }
 
     public String getUsername() {
@@ -180,14 +180,14 @@ public class User {
     //toString
     @Override
     public String toString() {
-        return "User{" +
+        return "Account{" +
                 "id=" + id +
                 ", seller=" + seller +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
+                ", StringOfBirth=" + StringOfBirth +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
