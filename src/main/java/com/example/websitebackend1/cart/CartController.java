@@ -29,9 +29,9 @@ public class CartController {
         cartService.AddToCart(cart);
     }
 
-    @DeleteMapping
-    public void DeleteFromCart(@RequestBody String productUuid) {
-        cartService.DeleteFromCart(productUuid);
+    @PostMapping(path = "/remove")
+    public void DeleteFromCart(@RequestBody String productUuid, String sessionToken) {
+        cartService.DeleteFromCart(productUuid, sessionToken);
     }
 
     @PatchMapping()
