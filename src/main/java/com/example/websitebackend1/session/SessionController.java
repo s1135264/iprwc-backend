@@ -25,7 +25,7 @@ public class SessionController {
         return sessionToken;
     }
 
-    @DeleteMapping
+    @PostMapping(path = "/delete")
     public void deleteSession(@RequestBody UUID sessionUuid){
         sessionService.deleteSession(sessionUuid);
     }

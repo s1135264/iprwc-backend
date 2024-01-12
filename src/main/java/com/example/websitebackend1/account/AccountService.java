@@ -44,4 +44,9 @@ public class AccountService {
     }
 
 
+    public void deleteAccount(UUID sessionUuid) {
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://127.0.0.1:8080/api/v1/session/delete";
+        restTemplate.postForObject(url, sessionUuid, UUID.class);
+    }
 }
