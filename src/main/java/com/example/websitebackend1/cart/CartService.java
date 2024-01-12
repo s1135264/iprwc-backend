@@ -59,10 +59,6 @@ public class CartService {
     }
 
     public void DeleteFromCart(UUID productUuid, UUID sessionToken) {
-        //TODO: string is too long, fix it
-//        System.out.println("stringProductUuid: " + stringProductUuid + " stringSessionToken: " + stringSessionToken);
-////        UUID productUuid = UUID.fromString(stringProductUuid);
-////        UUID sessionToken = UUID.fromString(stringSessionToken);
 
         RestTemplate restTemplate = new RestTemplate();
         String sessionAccountUrl = "http://127.0.0.1:8080/api/v1/session/account";
