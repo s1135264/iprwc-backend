@@ -103,4 +103,9 @@ public class ProductService {
         filter = filter.toLowerCase();
         return productRepository.findProductsByProductNameContaining(filter);
     }
+
+    public List<Product> GetProductByUuid(String stringProductUuid) {
+        UUID productUuid = UUID.fromString(stringProductUuid);
+        return productRepository.findProductByProductUuid(productUuid);
+    }
 }

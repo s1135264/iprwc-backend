@@ -28,6 +28,11 @@ public class ProductController {
         return productService.GetProductsByFilter(filter);
     }
 
+    @PostMapping(path = "uuid")
+    public List<Product> GetProductByUuid(@RequestBody String stringProductUuid){
+        return productService.GetProductByUuid(stringProductUuid);
+    }
+
 //    @PostMapping
 //    public void registerNewProduct(@RequestBody UUID sessionUuid, Product product) {
 //        productService.addNewProduct(sessionUuid, product);
