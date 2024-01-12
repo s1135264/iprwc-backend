@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -27,25 +28,30 @@ public class ProductController {
         return productService.GetProductsByFilter(filter);
     }
 
-    @PostMapping
-    public void registerNewProduct(@RequestBody Product product) {
-        productService.addNewProduct(product);
+    @PostMapping(path = "uuid")
+    public List<Product> GetProductByUuid(@RequestBody String stringProductUuid){
+        return productService.GetProductByUuid(stringProductUuid);
     }
 
-    @DeleteMapping(path = "{productID}")
-    public void deleteProduct(@PathVariable("productID") Long productID){
-        productService.deleteProduct(productID);
-    }
+//    @PostMapping
+//    public void registerNewProduct(@RequestBody UUID sessionUuid, Product product) {
+//        productService.addNewProduct(sessionUuid, product);
+//    }
 
-    @PutMapping(path = "{productID}")
-    public void updateProduct(
-            @PathVariable("productID") Long productID,
-            @RequestParam(required = false) String productQuantity,
-            @RequestParam(required = false) String productName,
-            @RequestParam(required = false) String productImageURL,
-            @RequestParam(required = false) String productDescription,
-            @RequestParam(required = false) String productPrice){
-        productService.updateProduct(productID, productQuantity, productName, productImageURL, productDescription, productPrice);
-    }
+//    @DeleteMapping(path = "{productID}")
+//    public void deleteProduct(@PathVariable("productID") Long productID){
+//        productService.deleteProduct(productID);
+//    }
+
+//    @PutMapping(path = "{productID}")
+//    public void updateProduct(
+//            @PathVariable("productID") Long productID,
+//            @RequestParam(required = false) String productQuantity,
+//            @RequestParam(required = false) String productName,
+//            @RequestParam(required = false) String productImageURL,
+//            @RequestParam(required = false) String productDescription,
+//            @RequestParam(required = false) String productPrice){
+//        productService.updateProduct(productID, productQuantity, productName, productImageURL, productDescription, productPrice);
+//    }
 
 }

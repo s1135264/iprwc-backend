@@ -2,6 +2,8 @@ package com.example.websitebackend1.account;
 
 import jakarta.persistence.*;
 
+import java.util.UUID;
+
 @Entity
 @Table
 public class Account {
@@ -24,6 +26,7 @@ public class Account {
     private String StringOfBirth;
     private String username;
     private String password;
+    private UUID token = UUID.randomUUID();
 
     public Account(){
     }
@@ -57,7 +60,7 @@ public class Account {
         this.password = password;
     }
 
-    //default user constructor
+    //Account creation constructor
     public Account(String firstName,
                    String lastName,
                    String email,
@@ -113,7 +116,7 @@ public class Account {
         this.id = id;
     }
 
-    public String isSeller() {
+    public String getSeller() {
         return seller;
     }
 
@@ -177,19 +180,28 @@ public class Account {
         this.password = password;
     }
 
+    public UUID getToken() {
+        return token;
+    }
+
+    public void setToken(UUID token) {
+        this.token = token;
+    }
+
     //toString
     @Override
     public String toString() {
         return "Account{" +
                 "id=" + id +
-                ", seller=" + seller +
+                ", seller='" + seller + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", StringOfBirth=" + StringOfBirth +
+                ", StringOfBirth='" + StringOfBirth + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", token=" + token +
                 '}';
     }
 }
