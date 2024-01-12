@@ -2,6 +2,8 @@ package com.example.websitebackend1.product;
 
 import jakarta.persistence.*;
 
+import java.util.UUID;
+
 @Entity
 @Table
 public class Product {
@@ -21,6 +23,7 @@ public class Product {
     private String productImageURL;
     private String productDescription;
     private String productQuantity;
+    private UUID token = UUID.randomUUID();
 
     public Product() {
     }
@@ -100,15 +103,24 @@ public class Product {
         this.productQuantity = productQuantity;
     }
 
+    public UUID getToken() {
+        return token;
+    }
+
+    public void setToken(UUID token) {
+        this.token = token;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
                 "productID=" + productID +
                 ", productName='" + productName + '\'' +
-                ", productPrice=" + productPrice +
+                ", productPrice='" + productPrice + '\'' +
                 ", productImageURL='" + productImageURL + '\'' +
                 ", productDescription='" + productDescription + '\'' +
-                ", productQuantity=" + productQuantity +
+                ", productQuantity='" + productQuantity + '\'' +
+                ", token=" + token +
                 '}';
     }
 }
