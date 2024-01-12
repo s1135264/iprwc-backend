@@ -3,7 +3,6 @@ package com.example.websitebackend1.account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.PublicKey;
 import java.util.UUID;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -24,8 +23,8 @@ public class AccountController {
     }
 
     @DeleteMapping()
-    public void deleteAccount(@RequestBody UUID sessionUuid){
-        accountService.deleteAccount(sessionUuid);
+    public void logout(@RequestBody UUID sessionUuid){
+        accountService.logout(sessionUuid);
     }
 
     @PostMapping(path = "/create")

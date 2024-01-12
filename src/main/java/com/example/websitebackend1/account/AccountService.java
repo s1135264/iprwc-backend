@@ -1,11 +1,9 @@
 package com.example.websitebackend1.account;
 
-import com.example.websitebackend1.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.net.http.HttpClient;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -44,7 +42,7 @@ public class AccountService {
     }
 
 
-    public void deleteAccount(UUID sessionUuid) {
+    public void logout(UUID sessionUuid) {
         RestTemplate restTemplate = new RestTemplate();
         String url = "http://127.0.0.1:8080/api/v1/session/delete";
         restTemplate.postForObject(url, sessionUuid, UUID.class);
