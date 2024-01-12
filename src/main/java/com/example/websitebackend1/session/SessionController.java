@@ -1,5 +1,6 @@
 package com.example.websitebackend1.session;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,9 +38,12 @@ public class SessionController {
     }
 
     @PostMapping(path = "/role")
-    public String isSeller(@RequestBody UUID sessionUuid){
-        String isSeller = sessionService.getIfSeller(sessionUuid);
-        return isSeller;
+    public String isSeller(@RequestBody ObjectNode json){
+        UUID sessionUuid = UUID.fromString(json.get("sessionUuid").asText());
+        String ifSeller = null;
+//        String isSeller = sessionService.getIfSeller(sessionUuid);
+        ifSeller = sessionService.getIfSeller(sessionUuid);
+        return ifSeller;
     }
 
     @PostMapping(path = "/validate")

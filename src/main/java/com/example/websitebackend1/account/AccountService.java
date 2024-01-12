@@ -49,9 +49,12 @@ public class AccountService {
         restTemplate.postForObject(url, sessionUuid, UUID.class);
     }
 
-    public String GetRole(String stringAccountUuid) {
-        UUID accountUuid = UUID.fromString(stringAccountUuid);
-        String role = accountRepository.getRoleByUuid(accountUuid);
+    public String GetRole(UUID sessionUuid) {
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://127.0.0.1:8080/api/v1/session/account";
+        UUID userUuid = restTemplate.postForObject(url, sessionUuid, UUID.class);
+
+        String role = accountRepository.getRoleByUuid(userUuid);
         return role;
     }
 

@@ -1,5 +1,6 @@
 package com.example.websitebackend1.account;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,8 +34,9 @@ public class AccountController {
     }
 
     @PostMapping(path = "/role")
-    public String getRole(@RequestBody String accountUuid){
-        return accountService.GetRole(accountUuid);
+    public String getRole(@RequestBody ObjectNode json){
+        UUID sessionUuid = UUID.fromString(json.get("sessionUuid").asText());
+        return accountService.GetRole(sessionUuid);
     }
 
     @PostMapping(path = "/validate")
