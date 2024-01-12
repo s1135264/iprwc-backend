@@ -30,7 +30,9 @@ public class CartController {
     }
 
     @PostMapping(path = "/remove")
-    public void DeleteFromCart(@RequestBody String productUuid, String sessionToken) {
+    public void DeleteFromCart(@RequestBody ObjectNode json) {
+        UUID sessionToken = UUID.fromString(json.get("sessionUuid").asText());
+        UUID productUuid = UUID.fromString(json.get("productUuid").asText());
         cartService.DeleteFromCart(productUuid, sessionToken);
     }
 
