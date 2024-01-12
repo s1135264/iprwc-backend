@@ -3,6 +3,8 @@ package com.example.websitebackend1.account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping(path = "api/v1/account")
@@ -16,7 +18,7 @@ public class AccountController {
     }
 
     @PostMapping(path = "/login")
-    public String Login(@RequestBody Account account){
+    public UUID Login(@RequestBody Account account){
         return accountService.login(account);
     }
 

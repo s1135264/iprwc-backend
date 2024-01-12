@@ -1,9 +1,13 @@
 package com.example.websitebackend1.account;
 
+import com.example.websitebackend1.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import java.net.http.HttpClient;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class AccountService {
@@ -23,20 +27,19 @@ public class AccountService {
         accountRepository.save(account);
     }
 
-    public String login(Account account) {
+    public UUID login(Account account) {
         String username = account.getUsername();
         String password = account.getPassword();
-        String userUuid = accountRepository.getUuidByUsernameAndPassword(username, password);
+        UUID userUuid = UUID.fromString(accountRepository.getUuidByUsernameAndPassword(username, password));
         System.out.println("user Id is: " + userUuid);
         if (userUuid == null){
             throw new IllegalStateException("Username and password combination does not exist");
         } else {
-            //check if user already has a token
-            //check if token is expired
-            //if expired, generate new token
-                //And delete old token
-            //if not expired, return token
-            return userUuid;
+            RestTemplate restTemplate = new RestTemplate();
+            String url = "http://127.0.0.1:8080/api/v1/session";
+            UUID sessionToken = restTemplate.postForObject(url, userUuid, UUID.class);
+
+            return sessionToken;
         }
     }
 
