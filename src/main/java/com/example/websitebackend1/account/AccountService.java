@@ -49,7 +49,8 @@ public class AccountService {
         restTemplate.postForObject(url, sessionUuid, UUID.class);
     }
 
-    public String GetRole(UUID accountUuid) {
+    public String GetRole(String stringAccountUuid) {
+        UUID accountUuid = UUID.fromString(stringAccountUuid);
         String role = accountRepository.getRoleByUuid(accountUuid);
         return role;
     }

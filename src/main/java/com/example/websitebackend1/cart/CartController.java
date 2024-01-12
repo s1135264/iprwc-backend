@@ -21,7 +21,7 @@ public class CartController {
     }
 
     @PostMapping(path = "/get")
-    public List<String> GetCart(@RequestBody UUID sessionToken) {
+    public List<String> GetCart(@RequestBody String sessionToken) {
         return cartService.GetAccountCart(sessionToken);
     }
 
@@ -31,7 +31,7 @@ public class CartController {
     }
 
     @DeleteMapping
-    public void DeleteFromCart(@RequestBody UUID productUuid) {
+    public void DeleteFromCart(@RequestBody String productUuid) {
         cartService.DeleteFromCart(productUuid);
     }
 

@@ -33,7 +33,7 @@ public class AccountController {
     }
 
     @PostMapping(path = "/role")
-    public String getRole(@RequestBody UUID accountUuid){
+    public String getRole(@RequestBody String accountUuid){
         return accountService.GetRole(accountUuid);
     }
 }
