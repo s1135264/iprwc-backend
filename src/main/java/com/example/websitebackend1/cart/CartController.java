@@ -1,9 +1,11 @@
 package com.example.websitebackend1.cart;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -31,6 +33,17 @@ public class CartController {
     @DeleteMapping
     public void DeleteFromCart(@RequestBody UUID productUuid) {
         cartService.DeleteFromCart(productUuid);
+    }
+
+    @PatchMapping()
+    public void UpdateCart(@RequestBody ObjectNode json) {
+        UUID sessionUuid = UUID.fromString(json.get("sessionUuid").asText());
+        UUID productUuid = UUID.fromString(json.get("productUuid").asText());
+        String amount = json.get("amount").asText();
+//        System.out.println("sessionUuid: " + sessionUuid + " productUuid: " + productUuid + " amount: " + amount);
+        cartService.UpdateCartAmount(sessionUuid, productUuid, amount);
+
+//        cartService.UpdateCartAmount(sessionUuid, productUuid, amount);
     }
 
 }

@@ -1,6 +1,6 @@
 package com.example.websitebackend1.cart;
 
-import com.example.websitebackend1.product.Product;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -26,6 +26,7 @@ public class CartService {
         return cartRepository.getAllCartItemsFromAccount(accountUuid);
     }
 
+    @Transactional
     public void AddToCart(Cart cart) {
 
 
@@ -59,5 +60,32 @@ public class CartService {
     public void DeleteFromCart(UUID productUuid) {
         Long productId = cartRepository.findIdByProductUuid(productUuid);
         cartRepository.deleteById(productId);
+    }
+
+    @Transactional
+    public void UpdateCartAmount(UUID sessionUuid, UUID productUuid, String stringAmount) {
+
+        int amount = Integer.parseInt(stringAmount);
+
+        RestTemplate restTemplate = new RestTemplate();
+        String sessionAccountUrl = "http://127.0.0.1:8080/api/v1/session/account";
+        UUID accountUuid = restTemplate.postForObject(sessionAccountUrl, sessionUuid, UUID.class);
+
+        Optional<Cart> cartOptional = cartRepository.findCartByProduct(accountUuid, productUuid);
+
+        if (cartOptional.isPresent()){
+//            Cart cart = cartOptional.get();
+
+            if (amount == 0){
+                cartRepository.deleteById(cartOptional.get().getId());
+            } else {
+                cartRepository.deleteById(cartOptional.get().getId());
+                cartRepository.save(new Cart(accountUuid, productUuid, stringAmount));
+
+            }
+        } else {
+            throw new IllegalStateException("Cart does not exist");
+        }
+
     }
 }
