@@ -29,4 +29,10 @@ public class SessionController {
     public void deleteSession(@RequestBody UUID sessionUuid){
         sessionService.deleteSession(sessionUuid);
     }
+
+    @PostMapping(path = "/account")
+    public UUID getAccount(@RequestBody UUID sessionUuid){
+        UUID userUuid = sessionService.getAccount(sessionUuid);
+        return userUuid;
+    }
 }
