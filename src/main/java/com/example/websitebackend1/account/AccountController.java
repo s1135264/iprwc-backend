@@ -22,8 +22,8 @@ public class AccountController {
         return accountService.login(account);
     }
 
-    @DeleteMapping()
-    public void logout(@RequestBody UUID sessionUuid){
+    @PostMapping(path = "/logout")
+    public void logout(@RequestBody String sessionUuid){
         accountService.logout(sessionUuid);
     }
 
