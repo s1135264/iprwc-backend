@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long> {
@@ -17,4 +18,7 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
 
     @Query("SELECT a FROM Account a WHERE a.username = ?1")
     Optional<Account> findAccountByUsername(String username);
+
+    @Query("SELECT a.seller FROM Account a WHERE a.token = ?1")
+    String getRoleByUuid(UUID accountUuid);
 }

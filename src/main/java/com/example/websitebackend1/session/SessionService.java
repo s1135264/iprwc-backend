@@ -3,6 +3,7 @@ package com.example.websitebackend1.session;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -70,5 +71,18 @@ public class SessionService {
         } else {
             return currentSession.getUserUuid();
         }
+    }
+
+    public String getIfSeller(UUID sessionUuid) {
+        //get user uuid from session
+        UUID userUuid = getAccount(sessionUuid);
+
+        //get role from Account
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://127.0.0.1:8080/api/v1/account/role";
+        String role = restTemplate.postForObject(url, userUuid, String.class);
+
+
+        return role;
     }
 }

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -27,10 +28,10 @@ public class ProductController {
         return productService.GetProductsByFilter(filter);
     }
 
-    @PostMapping
-    public void registerNewProduct(@RequestBody Product product) {
-        productService.addNewProduct(product);
-    }
+//    @PostMapping
+//    public void registerNewProduct(@RequestBody UUID sessionUuid, Product product) {
+//        productService.addNewProduct(sessionUuid, product);
+//    }
 
     @DeleteMapping(path = "{productID}")
     public void deleteProduct(@PathVariable("productID") Long productID){

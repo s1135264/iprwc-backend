@@ -31,4 +31,9 @@ public class AccountController {
     public void registerNewAccount(@RequestBody Account account) {
         accountService.addNewAccount(account);
     }
+
+    @PostMapping(path = "/role")
+    public String getRole(@RequestBody UUID accountUuid){
+        return accountService.GetRole(accountUuid);
+    }
 }

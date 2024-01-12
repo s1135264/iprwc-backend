@@ -35,4 +35,10 @@ public class SessionController {
         UUID userUuid = sessionService.getAccount(sessionUuid);
         return userUuid;
     }
+
+    @PostMapping(path = "/role")
+    public String isSeller(@RequestBody UUID sessionUuid){
+        String isSeller = sessionService.getIfSeller(sessionUuid);
+        return isSeller;
+    }
 }
