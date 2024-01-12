@@ -58,14 +58,18 @@ public class CartService {
         cartRepository.save(newCart);
     }
 
-    public void DeleteFromCart(UUID productUuid, UUID sessionToken) {
+    public void DeleteFromCart(UUID sessionUuid, UUID productUuid) {
 
         RestTemplate restTemplate = new RestTemplate();
         String sessionAccountUrl = "http://127.0.0.1:8080/api/v1/session/account";
-        UUID accountUuid = restTemplate.postForObject(sessionAccountUrl, sessionToken, UUID.class);
+        UUID accountUuid = restTemplate.postForObject(sessionAccountUrl, sessionUuid, UUID.class);
 
-        Long productId = cartRepository.findIdByProductUuidAndAccountUuid(productUuid, accountUuid);
-        cartRepository.deleteById(productId);
+//        System.out.println("accountUuid: " + accountUuid + " cartUuid: " + productUuid);
+        
+
+        Long cartId = cartRepository.findIdByCartUuid(productUuid);
+//        System.out.println(cartId);
+        cartRepository.deleteById(cartId);
     }
 
     @Transactional

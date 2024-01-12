@@ -29,6 +29,10 @@ public interface CartRepository extends JpaRepository<Cart, Long> {
     @Query("SELECT c FROM Cart c WHERE c.accountUuid = ?1")
     List<Cart> getAllCartItemsFromAccount(UUID accountUuid);
 
-    @Query("SELECT c.id FROM Cart c WHERE c.productUuid = ?1 AND c.accountUuid = ?2")
-    Long findIdByProductUuidAndAccountUuid(UUID productUuid, UUID accountUuid);
+
+    @Query("SELECT c.id FROM Cart c WHERE c.token = ?1 AND c.accountUuid = ?2")
+    Long findIdBycartUuidAndAccountUuid(UUID cartUuid, UUID accountUuid);
+
+    @Query("SELECT c.id FROM Cart c WHERE c.productUuid = ?1")
+    Long findIdByCartUuid(UUID cartUuid);
 }
