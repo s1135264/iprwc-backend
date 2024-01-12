@@ -33,20 +33,20 @@ public class ProductController {
 //        productService.addNewProduct(sessionUuid, product);
 //    }
 
-    @DeleteMapping(path = "{productID}")
-    public void deleteProduct(@PathVariable("productID") Long productID){
-        productService.deleteProduct(productID);
-    }
+//    @DeleteMapping(path = "{productID}")
+//    public void deleteProduct(@PathVariable("productID") Long productID){
+//        productService.deleteProduct(productID);
+//    }
 
-    @PutMapping(path = "{productID}")
-    public void updateProduct(
-            @PathVariable("productID") Long productID,
-            @RequestParam(required = false) String productQuantity,
-            @RequestParam(required = false) String productName,
-            @RequestParam(required = false) String productImageURL,
-            @RequestParam(required = false) String productDescription,
-            @RequestParam(required = false) String productPrice){
-        productService.updateProduct(productID, productQuantity, productName, productImageURL, productDescription, productPrice);
-    }
+//    @PutMapping(path = "{productID}")
+//    public void updateProduct(
+//            @PathVariable("productID") Long productID,
+//            @RequestParam(required = false) String productQuantity,
+//            @RequestParam(required = false) String productName,
+//            @RequestParam(required = false) String productImageURL,
+//            @RequestParam(required = false) String productDescription,
+//            @RequestParam(required = false) String productPrice){
+//        productService.updateProduct(productID, productQuantity, productName, productImageURL, productDescription, productPrice);
+//    }
 
 }
