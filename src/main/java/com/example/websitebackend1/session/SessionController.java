@@ -41,4 +41,9 @@ public class SessionController {
         String isSeller = sessionService.getIfSeller(sessionUuid);
         return isSeller;
     }
+
+    @PostMapping(path = "/validate")
+    public boolean validate(@RequestBody UUID sessionUuid){
+        return sessionService.validate(sessionUuid);
+    }
 }

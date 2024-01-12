@@ -54,4 +54,14 @@ public class AccountService {
         String role = accountRepository.getRoleByUuid(accountUuid);
         return role;
     }
+
+    public boolean validate(String stringSessionUuid) {
+        UUID sessionUuid = UUID.fromString(stringSessionUuid);
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://127.0.0.1:8080/api/v1/session/validate";
+        boolean isValid = restTemplate.postForObject(url, sessionUuid, boolean.class);
+        return isValid;
+
+
+    }
 }

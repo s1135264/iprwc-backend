@@ -85,4 +85,25 @@ public class SessionService {
 
         return role;
     }
+
+    public boolean validate(UUID sessionUuid) {
+        Session currentSession = sessionRepository.findSessionByToken(sessionUuid);
+
+        if (currentSession == null){
+            return false;
+        } else {
+            //check if session is not older then 2 days
+            LocalDate oldSessionDate = currentSession.getLastUseDate();
+            LocalDate currentDate = LocalDate.now();
+            if (oldSessionDate.isBefore(currentDate.minusDays(2))) {
+                //Delete old session
+                sessionRepository.delete(currentSession);
+                return false;
+            }
+            //update token last used date
+            currentSession.setLastUseDate(currentDate);
+            sessionRepository.save(currentSession);
+             return true;
+        }
+    }
 }

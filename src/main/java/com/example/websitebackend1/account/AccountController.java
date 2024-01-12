@@ -36,4 +36,9 @@ public class AccountController {
     public String getRole(@RequestBody String accountUuid){
         return accountService.GetRole(accountUuid);
     }
+
+    @PostMapping(path = "/validate")
+    public boolean validate(@RequestBody String sessionUuid){
+        return accountService.validate(sessionUuid);
+    }
 }
