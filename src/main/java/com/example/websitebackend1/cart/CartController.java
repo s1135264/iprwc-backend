@@ -1,12 +1,11 @@
 package com.example.websitebackend1.cart;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -21,7 +20,7 @@ public class CartController {
     }
 
     @PostMapping(path = "/get")
-    public List<String> GetCart(@RequestBody String sessionToken) {
+    public List<Cart> GetCart(@RequestBody String sessionToken) {
         return cartService.GetAccountCart(sessionToken);
     }
 

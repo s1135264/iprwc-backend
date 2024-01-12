@@ -1,13 +1,12 @@
 package com.example.websitebackend1.cart;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class CartService {
@@ -19,11 +18,12 @@ public class CartService {
         this.cartRepository = cartRepository;
     }
 
-    public List<String> GetAccountCart(String stringSessionToken) {
+    public List<Cart> GetAccountCart(String stringSessionToken) {
         UUID sessionToken = UUID.fromString(stringSessionToken);
         RestTemplate restTemplate = new RestTemplate();
         String sessionAccountUrl = "http://127.0.0.1:8080/api/v1/session/account";
         UUID accountUuid = restTemplate.postForObject(sessionAccountUrl, sessionToken, UUID.class);
+
         return cartRepository.getAllCartItemsFromAccount(accountUuid);
     }
 
