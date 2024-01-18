@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://188.166.118.19")
 @RestController
 @RequestMapping(path = "api/v1/cart")
 public class CartController {
